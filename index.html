@@ -19,9 +19,9 @@ body{background-image: url("https://i.postimg.cc/pLd7XMrW/wallpaper.jpg");backgr
 <p class='catatan' id='koteks'>
 <marquee scrollamount="8" id="marq"><i id="spasi"></i>
 Yeay makasi ya<i id="spasi"></i>
-Kapan nih ditraktirinnya? &#128511;<i id="spasi"></i>
+Kapan nih ditraktirinnya? 😝<i id="spasi"></i>
 Ditunggu gajian nya🤣<i id="spasi"></i>
-Selamat Ulang Tahun yaa &#129395;&#129395;&#129395;</marquee>
+Selamat Ulang Tahun yaa &#129395;&#129395;&#129395;❤️❤️</marquee>
 </p>
 
 
@@ -49,15 +49,37 @@ var audio = new Audio('Selamat ulang tahun.mp4');audio.play();audio.loop=true;}
                     confirmButtonText: 'Lanjut',
                     showCancelButton: false,
                 });  
+                var { value: umur } = await swals.fire({
+                    title: 'Tanggal Lahir Kamu?',
+                    input: 'text',
+                    inputPlaceholder:'Contohnya gini ya Bulan/Tanggal/Tahun 06/21/2000',
+                    confirmButtonText: 'Lanjut',
+                    showCancelButton: false,
+                    
+                });  
+                var date = new Date(umur).getTime();
+                var jumlah = Date.now()- date;
+                var tanggal = new Date(jumlah);
+                var tahun = tanggal.getUTCFullYear()
+                var usia = Math.abs(tahun - 1970)
                  
-                if(nama && nama.length < 35){
-                	play();
-                	window.nama = nama;
-                    await swals.fire('Hai, ' + nama + ' manis ツ');                    
-                    await swals.fire('Cie yang hari ini ultah 😝');
-                    await swals.fire('Selamat ulang tahun manis!💕💕');
-                    await swals.fire('Panjang umur & sehat selalu ❤️');
-                    pilihwarna();
+                if(nama && nama.length < 35 ){
+                    if(umur && umur.length < 30){
+                        play();
+                        window.nama = nama;
+                        window.usia = usia;
+                        await swals.fire('Hai, ' + nama + ' manis ツ');                    
+                        await swals.fire('Cie yang hari ini ultah 😝');
+                        await swals.fire('Selamat ulang tahun manis!💕');
+                        await swals.fire('Ga kerasa ya sekarang udah '+usia+' tahun');
+                        await swals.fire('Tahun ini apa yg dicita citain ?');
+                        await swals.fire('Semoga terkabul ya semua cita citanya ❤️');
+                        await swals.fire('Panjang umur & sehat selalu ❤️');
+                        pilihwarna();
+                    }else{
+                        await swals.fire('Ups!', 'Tanggal tidak boleh kosong ya!');
+                    mulai();
+                    }
                 //                                   
                 } else {
                     await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 35 karakter, ya!');
